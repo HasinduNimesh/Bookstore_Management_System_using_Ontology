@@ -1,0 +1,16 @@
+{
+  "include": [
+    "ontology-mas-ui/backend",
+    "bms"
+  ],
+  "venvPath": ".",
+  "venv": ".venv",
+  "reportMissingImports": "warning",
+  "reportMissingTypeStubs": "none",
+  "pythonVersion": "3.11",
+  "typeCheckingMode": "basic",
+  "extraPaths": [
+    "ontology-mas-ui/backend",
+    "."
+  ]
+}

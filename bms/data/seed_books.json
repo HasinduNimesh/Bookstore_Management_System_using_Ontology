@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "genre": "Programming",
+    "price": 29.99,
+    "qty": 12
+  },
+  {
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt",
+    "genre": "Programming",
+    "price": 27.5,
+    "qty": 10
+  },
+  {
+    "title": "Deep Learning",
+    "author": "Ian Goodfellow",
+    "genre": "AI",
+    "price": 35.0,
+    "qty": 8
+  },
+  {
+    "title": "Hands-On Machine Learning",
+    "author": "Aurelien Geron",
+    "genre": "AI",
+    "price": 32.0,
+    "qty": 15
+  },
+  {
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "genre": "Sci-Fi",
+    "price": 14.99,
+    "qty": 20
+  },
+  {
+    "title": "Neuromancer",
+    "author": "William Gibson",
+    "genre": "Sci-Fi",
+    "price": 12.99,
+    "qty": 16
+  },
+  {
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "genre": "Non-Fiction",
+    "price": 19.99,
+    "qty": 18
+  },
+  {
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "genre": "Non-Fiction",
+    "price": 18.5,
+    "qty": 14
+  },
+  {
+    "title": "The Name of the Wind",
+    "author": "Patrick Rothfuss",
+    "genre": "Fantasy",
+    "price": 15.99,
+    "qty": 13
+  },
+  {
+    "title": "Mistborn",
+    "author": "Brandon Sanderson",
+    "genre": "Fantasy",
+    "price": 13.49,
+    "qty": 12
+  },
+  {
+    "title": "The Midnight Library",
+    "author": "Matt Haig",
+    "genre": "Fiction",
+    "price": 11.99,
+    "qty": 10
+  },
+  {
+    "title": "Educated",
+    "author": "Tara Westover",
+    "genre": "Memoir",
+    "price": 13.99,
+    "qty": 9
+  }
+]

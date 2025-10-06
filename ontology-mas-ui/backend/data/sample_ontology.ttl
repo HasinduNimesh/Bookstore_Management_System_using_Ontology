@@ -1,0 +1,57 @@
+@prefix ex: <http://example.org/bookstore#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# Classes
+ex:Customer rdf:type owl:Class .
+ex:ServiceAgent rdf:type owl:Class .
+ex:Observation rdf:type owl:Class .
+ex:State rdf:type owl:Class .
+ex:Seat rdf:type owl:Class .
+
+# Object Properties
+ex:observedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain ex:Observation ;
+    rdfs:range ex:Customer .
+
+ex:hasState rdf:type owl:ObjectProperty ;
+    rdfs:domain ex:Customer ;
+    rdfs:range ex:State .
+
+ex:occupies rdf:type owl:ObjectProperty ;
+    rdfs:domain ex:Customer ;
+    rdfs:range ex:Seat .
+
+# Data Properties
+ex:observationType rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Observation .
+
+ex:atTick rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Observation .
+
+ex:stateName rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:State .
+
+ex:seatNumber rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Seat .
+
+# Sample instances
+ex:Happy rdf:type ex:State ;
+    ex:stateName "Happy" .
+
+ex:Neutral rdf:type ex:State ;
+    ex:stateName "Neutral" .
+
+ex:Unhappy rdf:type ex:State ;
+    ex:stateName "Unhappy" .
+
+# Sample seats
+ex:Seat_1 rdf:type ex:Seat ;
+    ex:seatNumber "1" .
+
+ex:Seat_2 rdf:type ex:Seat ;
+    ex:seatNumber "2" .
+
+ex:Seat_3 rdf:type ex:Seat ;
+    ex:seatNumber "3" .

@@ -1,0 +1,6 @@
+# Core libraries
+owlready2
+mesa==2.3.3
+numpy
+pandas
+matplotlib

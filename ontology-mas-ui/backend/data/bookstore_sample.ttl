@@ -1,0 +1,88 @@
+@prefix ex: <http://example.org/bookstore#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Classes
+ex:Book rdf:type owl:Class .
+ex:Inventory rdf:type owl:Class .
+ex:Observation rdf:type owl:Class .
+ex:Customer rdf:type owl:Class .
+ex:ServiceAgent rdf:type owl:Class .
+
+# Object Properties
+ex:hasBook rdf:type owl:ObjectProperty ;
+    rdfs:domain ex:Inventory ;
+    rdfs:range ex:Book .
+
+# Data Properties for books
+ex:title rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Book ;
+    rdfs:range xsd:string .
+
+ex:genre rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Book ;
+    rdfs:range xsd:string .
+
+ex:price rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Book ;
+    rdfs:range xsd:decimal .
+
+# Data Properties for inventory
+ex:availableQuantity rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Inventory ;
+    rdfs:range xsd:integer .
+
+ex:thresholdQuantity rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Inventory ;
+    rdfs:range xsd:integer .
+
+ex:restockAmount rdf:type owl:DatatypeProperty ;
+    rdfs:domain ex:Inventory ;
+    rdfs:range xsd:integer .
+
+# Book + Inventory instances
+ex:Book_Dune rdf:type ex:Book ;
+    ex:title "Dune" ;
+    ex:genre "Sci-Fi" ;
+    ex:price "14.99"^^xsd:decimal .
+
+ex:Inv_Dune rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_Dune ;
+    ex:availableQuantity "8"^^xsd:integer ;
+    ex:thresholdQuantity "5"^^xsd:integer ;
+    ex:restockAmount "10"^^xsd:integer .
+
+ex:Book_Neuromancer rdf:type ex:Book ;
+    ex:title "Neuromancer" ;
+    ex:genre "Sci-Fi" ;
+    ex:price "12.99"^^xsd:decimal .
+
+ex:Inv_Neuromancer rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_Neuromancer ;
+    ex:availableQuantity "6"^^xsd:integer ;
+    ex:thresholdQuantity "4"^^xsd:integer ;
+    ex:restockAmount "8"^^xsd:integer .
+
+ex:Book_AtomicHabits rdf:type ex:Book ;
+    ex:title "Atomic Habits" ;
+    ex:genre "Non-Fiction" ;
+    ex:price "18.50"^^xsd:decimal .
+
+ex:Inv_AtomicHabits rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_AtomicHabits ;
+    ex:availableQuantity "10"^^xsd:integer ;
+    ex:thresholdQuantity "6"^^xsd:integer ;
+    ex:restockAmount "12"^^xsd:integer .
+
+ex:Book_CleanCode rdf:type ex:Book ;
+    ex:title "Clean Code" ;
+    ex:genre "Programming" ;
+    ex:price "29.99"^^xsd:decimal .
+
+ex:Inv_CleanCode rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_CleanCode ;
+    ex:availableQuantity "7"^^xsd:integer ;
+    ex:thresholdQuantity "5"^^xsd:integer ;
+    ex:restockAmount "10"^^xsd:integer .
