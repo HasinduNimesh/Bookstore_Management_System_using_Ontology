@@ -6,7 +6,7 @@
 
 ## Demo Video
 
-https://github.com/HasinduNimesh/Bookstore_Management_System_using_Ontology/assets/D-BCS-23-0007-Demo.mp4
+https://github.com/HasinduNimesh/Bookstore_Management_System_using_Ontology/D-BCS-23-0007-Demo.mp4
 
 *If the video doesn't play above, download it here: [D-BCS-23-0007-Demo.mp4](D-BCS-23-0007-Demo.mp4)*
 
