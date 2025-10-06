@@ -1,0 +1,4450 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://example.org/bookstore.owl"
+         xmlns="http://example.org/bookstore.owl#"
+         xmlns:swrl="http://www.w3.org/2003/11/swrl#">
+
+<owl:Ontology rdf:about="#"/>
+
+<owl:ObjectProperty rdf:about="#purchases">
+  <rdfs:domain rdf:resource="#Customer"/>
+  <rdfs:range rdf:resource="#Book"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#worksAt">
+  <rdfs:domain rdf:resource="#Employee"/>
+  <rdfs:range rdf:resource="#Inventory"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasBook">
+  <rdfs:domain rdf:resource="#Inventory"/>
+  <rdfs:range rdf:resource="#Book"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#orderedBy">
+  <rdfs:domain rdf:resource="#Order"/>
+  <rdfs:range rdf:resource="#Customer"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#forBook">
+  <rdfs:domain rdf:resource="#Order"/>
+  <rdfs:range rdf:resource="#Book"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#hasAuthor">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Book"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasGenre">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Book"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasPrice">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Book"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#availableQuantity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Inventory"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#thresholdQuantity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Inventory"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#restockAmount">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Inventory"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#quantity">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Order"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#needsRestock">
+  <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  <rdfs:domain rdf:resource="#Inventory"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Book">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Customer">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Employee">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Order">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Inventory">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#book_clean_code">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robert C. Martin</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Programming</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">29.99</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_clean_code">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_clean_code"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">13</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_the_pragmatic_programmer">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Andrew Hunt</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Programming</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">27.5</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_the_pragmatic_programmer">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_deep_learning">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ian Goodfellow</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AI</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">35.0</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_deep_learning">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_deep_learning"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_hands_on_machine_learning">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aurelien Geron</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">AI</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">32.0</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_hands_on_machine_learning">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_hands_on_machine_learning"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_dune">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Frank Herbert</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sci-Fi</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">14.99</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_dune">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_dune"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">9</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_neuromancer">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">William Gibson</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sci-Fi</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12.99</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_neuromancer">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_neuromancer"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_sapiens">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Yuval Noah Harari</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Non-Fiction</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">19.99</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_sapiens">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_sapiens"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">14</availableQuantity>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_atomic_habits">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">James Clear</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Non-Fiction</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">18.5</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_atomic_habits">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_atomic_habits"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_the_name_of_the_wind">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Patrick Rothfuss</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fantasy</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">15.99</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_the_name_of_the_wind">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_the_name_of_the_wind"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">14</availableQuantity>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_mistborn">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Brandon Sanderson</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fantasy</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.49</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_mistborn">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_mistborn"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_the_midnight_library">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matt Haig</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fiction</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">11.99</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_the_midnight_library">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_the_midnight_library"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#book_educated">
+  <rdf:type rdf:resource="#Book"/>
+  <hasAuthor rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tara Westover</hasAuthor>
+  <hasGenre rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Memoir</hasGenre>
+  <hasPrice rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">13.99</hasPrice>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#inv_educated">
+  <rdf:type rdf:resource="#Inventory"/>
+  <hasBook rdf:resource="#book_educated"/>
+  <thresholdQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</thresholdQuantity>
+  <restockAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</restockAmount>
+  <needsRestock rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</needsRestock>
+  <availableQuantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</availableQuantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_0">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_1">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_2">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_3">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_4">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_5">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_6">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_7">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_8">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_9">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_10">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_11">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_12">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_13">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_14">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_15">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_16">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_17">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_18">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_19">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_20">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_21">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_22">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_23">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_24">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_25">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_26">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_27">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_28">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_29">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_30">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_31">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_32">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_33">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_34">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_35">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_36">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_37">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_38">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#cust_39">
+  <rdf:type rdf:resource="#Customer"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#employee_1">
+  <rdf:type rdf:resource="#Employee"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_1">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_2">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_3">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_16_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_16"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_4">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_5">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_16_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_16"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_6">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_7">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_8">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_9">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_16_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_16"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_10">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_11">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_12">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_13">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_14">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_15">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_16">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_17">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_18">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_19">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_20">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_21">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_22">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_23">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_16_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_16"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_24">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_16_25">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_16"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_26">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_27">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_27">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_27">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_27">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_27">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_27">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_27">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_8_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_8"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_16_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_16"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_28">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_29">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_16_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_16"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_30">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_31">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_12_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_12"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_32">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_33">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_1_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_1"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_34">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_35">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_21_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_21"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_24_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_24"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_16_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_16"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_36">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_33_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_33"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_17_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_17"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_11_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_11"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_3_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_3"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_9_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_9"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_39_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_39"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_2_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_2"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_37">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_20_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_20"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_28_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_28"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_37_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_37"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_6_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_6"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_31_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_31"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_5_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_5"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_38">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_25_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_25"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_sapiens"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_29_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_29"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_26_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_26"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_14_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_14"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_22_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_22"/>
+  <forBook rdf:resource="#book_the_midnight_library"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_0_39">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_0"/>
+  <forBook rdf:resource="#book_neuromancer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_19_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_19"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_34_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_34"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_15_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_15"/>
+  <forBook rdf:resource="#book_atomic_habits"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_32_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_32"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_13_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_13"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_18_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_18"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_30_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_30"/>
+  <forBook rdf:resource="#book_clean_code"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_35_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_35"/>
+  <forBook rdf:resource="#book_the_name_of_the_wind"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_10_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_10"/>
+  <forBook rdf:resource="#book_hands_on_machine_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_23_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_23"/>
+  <forBook rdf:resource="#book_educated"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_4_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_4"/>
+  <forBook rdf:resource="#book_dune"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_36_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_36"/>
+  <forBook rdf:resource="#book_mistborn"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_38_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_38"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_27_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_27"/>
+  <forBook rdf:resource="#book_deep_learning"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#order_7_40">
+  <rdf:type rdf:resource="#Order"/>
+  <orderedBy rdf:resource="#cust_7"/>
+  <forBook rdf:resource="#book_the_pragmatic_programmer"/>
+  <quantity rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</quantity>
+</owl:NamedIndividual>
+
+<swrl:Variable rdf:about="urn:swrl#o"/>
+
+<swrl:Variable rdf:about="urn:swrl#c"/>
+
+<swrl:Variable rdf:about="urn:swrl#b"/>
+
+<swrl:Imp>
+  <swrl:body>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:ClassAtom>
+          <swrl:classPredicate rdf:resource="#Order"/>
+          <swrl:argument1 rdf:resource="urn:swrl#o"/>
+        </swrl:ClassAtom>
+      </rdf:first>
+      <rdf:rest>
+        <rdf:Description>
+          <rdf:first>
+            <swrl:IndividualPropertyAtom>
+              <swrl:propertyPredicate rdf:resource="#orderedBy"/>
+              <swrl:argument1 rdf:resource="urn:swrl#o"/>
+              <swrl:argument2 rdf:resource="urn:swrl#c"/>
+            </swrl:IndividualPropertyAtom>
+          </rdf:first>
+          <rdf:rest>
+            <rdf:Description>
+              <rdf:first>
+                <swrl:IndividualPropertyAtom>
+                  <swrl:propertyPredicate rdf:resource="#forBook"/>
+                  <swrl:argument1 rdf:resource="urn:swrl#o"/>
+                  <swrl:argument2 rdf:resource="urn:swrl#b"/>
+                </swrl:IndividualPropertyAtom>
+              </rdf:first>
+              <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+          </rdf:rest>
+        </rdf:Description>
+      </rdf:rest>
+    </rdf:Description>
+  </swrl:body>
+  <swrl:head>
+    <rdf:Description>
+      <rdf:first>
+        <swrl:IndividualPropertyAtom>
+          <swrl:propertyPredicate rdf:resource="#purchases"/>
+          <swrl:argument1 rdf:resource="urn:swrl#c"/>
+          <swrl:argument2 rdf:resource="urn:swrl#b"/>
+        </swrl:IndividualPropertyAtom>
+      </rdf:first>
+      <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    </rdf:Description>
+  </swrl:head>
+</swrl:Imp>
+
+
+</rdf:RDF>
