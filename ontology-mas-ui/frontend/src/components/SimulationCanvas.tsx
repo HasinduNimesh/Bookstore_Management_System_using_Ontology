@@ -37,24 +37,26 @@ export default function SimulationCanvas() {
   const { gridState, events, currentTick, pendingRestocks } = useAppStore()
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1 flex flex-col h-full">
       {/* Grid visualization */}
-      <div className="flex-1 p-4 overflow-auto">
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-lg font-bold">Simulation Grid (Tick: {currentTick})</h2>
-          <div className="flex gap-4 text-xs">
+      <div className="flex-1 p-2 lg:p-4 overflow-auto">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-2 lg:mb-3 gap-2">
+          <h2 className="text-sm lg:text-lg font-bold">Grid (Tick: {currentTick})</h2>
+          <div className="flex flex-wrap gap-2 lg:gap-4 text-xs">
             <div className="flex items-center gap-1">
               <span className="w-4 h-4 bg-blue-500 rounded flex items-center justify-center text-white">👤</span>
-              <span>Customer Agents (browsing & purchasing)</span>
+              <span className="hidden lg:inline">Customer Agents (browsing & purchasing)</span>
+              <span className="lg:hidden">Customers</span>
             </div>
             <div className="flex items-center gap-1">
               <span className="w-4 h-4 bg-green-500 rounded flex items-center justify-center text-white">🛠️</span>
-              <span>Service Agents (restocking inventory)</span>
+              <span className="hidden lg:inline">Service Agents (restocking inventory)</span>
+              <span className="lg:hidden">Service</span>
             </div>
             {pendingRestocks && pendingRestocks.length > 0 && (
               <div className="flex items-center gap-1">
                 <span className="w-4 h-4 bg-orange-500 rounded flex items-center justify-center text-white">🚚</span>
-                <span className="text-orange-600 font-semibold">{pendingRestocks.length} Restocks In Transit</span>
+                <span className="text-orange-600 font-semibold text-xs">{pendingRestocks.length} <span className="hidden sm:inline">Restocks In Transit</span><span className="sm:hidden">Transit</span></span>
               </div>
             )}
           </div>

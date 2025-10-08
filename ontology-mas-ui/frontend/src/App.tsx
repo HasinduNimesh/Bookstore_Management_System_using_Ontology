@@ -1,16 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAppStore } from './store/appStore'
 import TopBar from './components/TopBar'
 import OntologyInspector from './components/OntologyInspector'
 import SimulationCanvas from './components/SimulationCanvas'
 import HMMDashboard from './components/HMMDashboard'
 import MessageLog from './components/MessageLog'
+import SimulationSummary from './components/SimulationSummary'
 import './index.css'
 
 function App() {
-  const { setWs, setWsConnected, updateTick, wsConnected } = useAppStore()
+  const { setWs, setWsConnected, updateTick, wsConnected, simulationRunning } = useAppStore()
   const reconnectTimeoutRef = useRef<number | null>(null)
   const backoffRef = useRef(1000) // start with 1s, cap at 10s
+  const [showSummary, setShowSummary] = useState(false)
+  const prevRunningRef = useRef(simulationRunning)
 
   useEffect(() => {
     // Build WS URL using current host so Vite proxy can route /ws -> backend in dev
@@ -81,32 +84,61 @@ function App() {
     }
   }, [])
 
+  // Detect when simulation stops to potentially show summary
+  useEffect(() => {
+    if (prevRunningRef.current && !simulationRunning) {
+      // Simulation just stopped
+      // Auto-show summary after a short delay
+      setTimeout(() => {
+        setShowSummary(true)
+      }, 1000)
+    }
+    prevRunningRef.current = simulationRunning
+  }, [simulationRunning])
+
+  // Handle close summary event
+  useEffect(() => {
+    const handleCloseSummary = () => setShowSummary(false)
+    window.addEventListener('closeSummary', handleCloseSummary)
+    return () => window.removeEventListener('closeSummary', handleCloseSummary)
+  }, [])
+
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       <TopBar />
       
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         {/* Left: Ontology Inspector */}
-        <div className="w-1/4 border-r border-gray-200 overflow-y-auto bg-white">
+        <div className="w-full lg:w-1/4 h-1/4 lg:h-full border-b lg:border-b-0 lg:border-r border-gray-200 overflow-y-auto bg-white">
           <OntologyInspector />
         </div>
         
         {/* Center: Simulation Canvas & Message Log */}
-        <div className="flex-1 flex flex-col overflow-hidden">
-          <div className="flex-1">
+        <div className="flex-1 flex flex-col overflow-hidden min-h-0">
+          <div className="flex-1 min-h-0">
             <SimulationCanvas />
           </div>
-          <div className="h-1/3 border-t border-gray-200 overflow-y-auto p-4 bg-gray-50">
+          <div className="h-48 lg:h-64 border-t border-gray-200 overflow-y-auto p-2 lg:p-4 bg-gray-50 flex-shrink-0">
             <MessageLog />
           </div>
         </div>
         
         {/* Right: HMM & KPIs */}
-        <div className="w-1/4 border-l border-gray-200 overflow-y-auto bg-white">
+        <div className="w-full lg:w-1/4 h-1/4 lg:h-full border-t lg:border-t-0 lg:border-l border-gray-200 overflow-y-auto bg-white">
           <HMMDashboard />
         </div>
       </div>
       
+      {/* View Summary Button (always available) */}
+      <div className="fixed bottom-4 left-4">
+        <button
+          onClick={() => setShowSummary(true)}
+          className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 shadow-lg font-semibold flex items-center gap-2"
+        >
+          <span>📊</span> View Analysis
+        </button>
+      </div>
+
       {/* Connection status */}
       <div className="fixed bottom-4 right-4">
         <div className={`px-3 py-1 rounded-full text-sm ${
@@ -115,6 +147,11 @@ function App() {
           {wsConnected ? '● Connected' : '○ Disconnected'}
         </div>
       </div>
+
+      {/* Simulation Summary Modal */}
+      {showSummary && (
+        <SimulationSummary />
+      )}
     </div>
   )
 }

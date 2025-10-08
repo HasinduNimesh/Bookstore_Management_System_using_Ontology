@@ -102,21 +102,21 @@ export default function TopBar() {
   }
 
   return (
-    <div className="bg-white border-b border-gray-200 px-6 py-4">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Ontology-Driven MAS Simulator</h1>
+    <div className="bg-white border-b border-gray-200 px-2 lg:px-6 py-2 lg:py-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <h1 className="text-lg lg:text-2xl font-bold text-gray-900">Ontology-Driven MAS Simulator</h1>
         
-        <div className="flex gap-3">
+        <div className="flex gap-2">
           <button
             onClick={() => setShowConfig(!showConfig)}
-            className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+            className="px-3 lg:px-4 py-1 lg:py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 text-sm lg:text-base"
           >
             Configure
           </button>
           
           <button
             onClick={handleStartStop}
-            className={`px-4 py-2 rounded-lg ${
+            className={`px-3 lg:px-4 py-1 lg:py-2 rounded-lg text-sm lg:text-base ${
               simulationRunning 
                 ? 'bg-red-600 hover:bg-red-700' 
                 : (ontologyLoaded && config ? 'bg-green-600 hover:bg-green-700' : 'bg-green-300 cursor-not-allowed')
@@ -169,7 +169,7 @@ export default function TopBar() {
                 <span id="customers-helper" className="mt-1 text-xs font-normal text-gray-500">Number of customer agents to spawn.</span>
               </label>
               <label className="flex flex-col text-sm font-medium text-gray-700">
-                Service Agents
+                Service Agents (Restock)
                 <input
                   {...register('numServiceAgents', { valueAsNumber: true, min: 1 })}
                   type="number"
@@ -177,7 +177,7 @@ export default function TopBar() {
                   aria-describedby="service-helper"
                   min={1}
                 />
-                <span id="service-helper" className="mt-1 text-xs font-normal text-gray-500">Support agents handling customer events.</span>
+                <span id="service-helper" className="mt-1 text-xs font-normal text-gray-500">Agents that monitor inventory and handle restocking.</span>
               </label>
             </div>
             <div className="flex flex-wrap gap-3 justify-end">

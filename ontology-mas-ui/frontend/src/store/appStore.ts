@@ -135,8 +135,8 @@ export const useAppStore = create<AppState>((set) => ({
   setSimulationRunning: (running) => set({ simulationRunning: running }),
   updateTick: (data) => set((state) => ({
     currentTick: data.tick,
-    // Accumulate events (keep last 100 for performance)
-    events: [...state.events, ...data.events].slice(-100),
+    // Keep ALL events (no limit - we need them for end-of-simulation download)
+    events: [...state.events, ...data.events],
     gridState: data.grid,
     metrics: { ...state.metrics, ...data.metrics },
     customerStates: data.customerStates || [],

@@ -86,3 +86,114 @@ ex:Inv_CleanCode rdf:type ex:Inventory ;
     ex:availableQuantity "7"^^xsd:integer ;
     ex:thresholdQuantity "5"^^xsd:integer ;
     ex:restockAmount "10"^^xsd:integer .
+
+# Additional Books
+ex:Book_1984 rdf:type ex:Book ;
+    ex:title "1984" ;
+    ex:genre "Dystopian Fiction" ;
+    ex:price "13.99"^^xsd:decimal .
+
+ex:Inv_1984 rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_1984 ;
+    ex:availableQuantity "9"^^xsd:integer ;
+    ex:thresholdQuantity "4"^^xsd:integer ;
+    ex:restockAmount "10"^^xsd:integer .
+
+ex:Book_HarryPotter rdf:type ex:Book ;
+    ex:title "Harry Potter and the Sorcerer's Stone" ;
+    ex:genre "Fantasy" ;
+    ex:price "16.99"^^xsd:decimal .
+
+ex:Inv_HarryPotter rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_HarryPotter ;
+    ex:availableQuantity "12"^^xsd:integer ;
+    ex:thresholdQuantity "6"^^xsd:integer ;
+    ex:restockAmount "15"^^xsd:integer .
+
+ex:Book_Sapiens rdf:type ex:Book ;
+    ex:title "Sapiens: A Brief History of Humankind" ;
+    ex:genre "History" ;
+    ex:price "19.99"^^xsd:decimal .
+
+ex:Inv_Sapiens rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_Sapiens ;
+    ex:availableQuantity "8"^^xsd:integer ;
+    ex:thresholdQuantity "5"^^xsd:integer ;
+    ex:restockAmount "10"^^xsd:integer .
+
+ex:Book_PythonCrashCourse rdf:type ex:Book ;
+    ex:title "Python Crash Course" ;
+    ex:genre "Programming" ;
+    ex:price "34.99"^^xsd:decimal .
+
+ex:Inv_PythonCrashCourse rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_PythonCrashCourse ;
+    ex:availableQuantity "6"^^xsd:integer ;
+    ex:thresholdQuantity "4"^^xsd:integer ;
+    ex:restockAmount "8"^^xsd:integer .
+
+ex:Book_ThinkingFastAndSlow rdf:type ex:Book ;
+    ex:title "Thinking, Fast and Slow" ;
+    ex:genre "Psychology" ;
+    ex:price "17.99"^^xsd:decimal .
+
+ex:Inv_ThinkingFastAndSlow rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_ThinkingFastAndSlow ;
+    ex:availableQuantity "7"^^xsd:integer ;
+    ex:thresholdQuantity "4"^^xsd:integer ;
+    ex:restockAmount "9"^^xsd:integer .
+
+ex:Book_TheHobbit rdf:type ex:Book ;
+    ex:title "The Hobbit" ;
+    ex:genre "Fantasy" ;
+    ex:price "15.99"^^xsd:decimal .
+
+ex:Inv_TheHobbit rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_TheHobbit ;
+    ex:availableQuantity "10"^^xsd:integer ;
+    ex:thresholdQuantity "5"^^xsd:integer ;
+    ex:restockAmount "12"^^xsd:integer .
+
+ex:Book_DesignPatterns rdf:type ex:Book ;
+    ex:title "Design Patterns: Elements of Reusable Object-Oriented Software" ;
+    ex:genre "Programming" ;
+    ex:price "39.99"^^xsd:decimal .
+
+ex:Inv_DesignPatterns rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_DesignPatterns ;
+    ex:availableQuantity "5"^^xsd:integer ;
+    ex:thresholdQuantity "3"^^xsd:integer ;
+    ex:restockAmount "7"^^xsd:integer .
+
+ex:Book_FoundationSeries rdf:type ex:Book ;
+    ex:title "Foundation" ;
+    ex:genre "Sci-Fi" ;
+    ex:price "14.50"^^xsd:decimal .
+
+ex:Inv_FoundationSeries rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_FoundationSeries ;
+    ex:availableQuantity "8"^^xsd:integer ;
+    ex:thresholdQuantity "4"^^xsd:integer ;
+    ex:restockAmount "10"^^xsd:integer .
+
+ex:Book_DeepWork rdf:type ex:Book ;
+    ex:title "Deep Work: Rules for Focused Success" ;
+    ex:genre "Self-Help" ;
+    ex:price "16.99"^^xsd:decimal .
+
+ex:Inv_DeepWork rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_DeepWork ;
+    ex:availableQuantity "9"^^xsd:integer ;
+    ex:thresholdQuantity "5"^^xsd:integer ;
+    ex:restockAmount "11"^^xsd:integer .
+
+ex:Book_ToKillAMockingbird rdf:type ex:Book ;
+    ex:title "To Kill a Mockingbird" ;
+    ex:genre "Classic Fiction" ;
+    ex:price "12.99"^^xsd:decimal .
+
+ex:Inv_ToKillAMockingbird rdf:type ex:Inventory ;
+    ex:hasBook ex:Book_ToKillAMockingbird ;
+    ex:availableQuantity "11"^^xsd:integer ;
+    ex:thresholdQuantity "6"^^xsd:integer ;
+    ex:restockAmount "12"^^xsd:integer .
